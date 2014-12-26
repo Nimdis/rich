@@ -16,12 +16,12 @@ module Rich
         validates :rich_file_file_name,
           :presence => true,
           :file_size => {
-            :maximum => 15.megabytes.to_i
+            :maximum => 300.megabytes.to_i
           }
 
         after_save :clear_uri_cache
       end
-  
+
       def rich_file
         self.rich_file_file_name
       end
@@ -29,7 +29,7 @@ module Rich
       def rich_file=(val)
         self.rich_file_file_name = val
       end
-  
+
       def uri_cache
         uri_cache_attribute = read_attribute(:uri_cache)
         if uri_cache_attribute.blank?
